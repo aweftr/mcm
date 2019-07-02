@@ -1,0 +1,122 @@
+\documentclass[12pt,a4paper]{article}
+
+\title{MCM}
+\author{llz}
+\date{\today}
+\usepackage{enumerate}
+\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage[UTF8]{ctex}
+\usepackage{gensymb}
+
+\begin{document}
+\kaishu
+\maketitle
+
+\section{模型学习} 
+
+\subsection{logistic曲线}
+曲线特点：初始阶段指数增长，逐渐变得饱和，增长变慢，达到成熟时增长停止。
+
+\subsection{规划问题}
+\subsubsection{线性规划}
+标准形式：
+\begin{displaymath}
+\begin{split}
+   min:Z &= CX\\
+   s.t.AX &\le b
+\end{split}
+\end{displaymath}
+\subsection{非线性规划}
+\paragraph{①}目前无通用的求解方法\\
+\paragraph {②}二次规划：目标函数为二次函数，约束条件为线性
+\subsection{整数规划}
+\subsubsection{线性整数规划}
+\begin{enumerate}
+\item 分支定界、割平面法：适合纯或混合整数规划
+\item 隐枚举法：0--1整数规划
+\item 匈牙利算法：指派问题
+\item 蒙特卡罗法：各种类型规划
+\end{enumerate}
+\subsubsection{非线性整数规划}
+随机取样计算法
+
+\subsection{灰色预测}
+将杂乱无章的原始数据经过预处理，变成有规律的时间序列数据，再建立动态模型，从而预测未来发展趋势。\\
+\subsubsection{GM（1，1）模型：}
+\begin{enumerate}
+\item 原始数据列：
+\begin{displaymath}
+x^{(0)}=(x^{(1)}(1),x^{(1)}(2),\ldots ,x^{(1)}(n))
+\end{displaymath}
+\item 生成新数据列（弱化随机序列的波动性和随机性）
+\begin{displaymath}
+x^{(1)}(t)=\sum_{k=1}^{t} x^{(0)}(k)
+\end{displaymath}
+\item 建立一阶线性微分方程：
+\begin{displaymath}
+\frac{dx^{(1)}}{dt}+ax^{(1)}=u
+\end{displaymath}
+a:发展系数；u:灰色作用量\\
+\item 对累加生成数据做均值生成$B$与常数项向量$Y_n$ :
+\begin{displaymath}
+B={
+\left[\begin{array}{c}
+0.5(x^{(1)}(1)+x^{(1)}(2)\\
+0.5(x^{(1)}(2)+x^{(1)}(3)\\
+0.5(x^{(1)}(n-1)+x^{(1)}(n)
+\end{array}
+\right]},
+Y_n=(x^{(0)}(2),x^{(0)}(3),\ldots ,x^{(0)}(n))^T
+\end{displaymath}
+\item 最小二乘法求解$\hat a$:
+$$\hat a=
+\begin{pmatrix} a\\u
+\end{pmatrix}
+=(B^TB)^{-1}B^TY_n$$
+\item 代入$\hat a$求解得：
+$$\hat x^{(1)}(t+1)=(x^{(0)}(1)-\frac{u}a)e^{-at}+\frac{u}a$$
+\item 对$\hat x^{(1)}(t+1)$及$\hat x{(1)}(t)$进行离散，并还原原序列：
+$$\hat x^{(0)}(t+1)=\hat x^{(1)}(t+1)-\hat x{(1)}(t)$$
+\item 灰色模型相关检验，判断模型是否合理
+\item 利用模型进行预测：
+\begin{displaymath}
+\hat x^{(0)}=[\underbrace{\hat x^{(0)}(1),x^{(0)}(2),\ldots ,x^{(0)}(n)}_{a},\underbrace{\hat x^{(0)}(n+1),x^{(0)}(n+2),\ldots ,x^{(0)}(n+m)}_{b}]
+\end{displaymath}
+a:原始数据的模拟；b:未来数据的预测.
+\end{enumerate}
+
+\section{遗传算法}
+\subsection{实现步骤}
+\begin{enumerate}
+\item编码
+\begin{displaymath}
+\begin{split}
+\underbrace{000000000}_{k}&=0\longrightarrow L\\
+000000001&=1\longrightarrow L+\delta\\
+111111111&=2^k-1\longrightarrow U
+\end{split}
+\end{displaymath}
+可知：
+\begin{displaymath}
+\delta=\frac{U-L}{2^k-1}
+\end{displaymath}
+\item解码
+$$x=L+(\sum_{i=1}^{k}b_i2^{i-1})\frac{U-L}{2^k-1}$$
+\item交配:
+是使用单点或多点进行交叉的算子。首先用随机数产生一个或多个交配点位置，然后两个个体在交配点位置互换部分基因码，形成两个个体。
+\item突变:
+是使用基本位进行基因突变。
+\item倒位:
+是指某区段正常排列顺序发生180\degree的颠倒，包括臂间倒位和臂内倒位。
+\item个体适应度评估:
+通常，求目标函数的最大值的问题可以直接把目标函数作为检测个体适应度大小的函数。
+\item复制:
+是根据个体适应度大小决定其下代遗传的可能性，设种群中个体总数为$N$,个体$i$的适应度为$f_i$,则个体$i$被选取的几率为：
+$$P_i=\frac {f_i}{\sum_{k=1}^{N}f_k}$$
+\end{enumerate}
+
+\section{latex学习}
+\subsection{文字与符号}
+
+\end{document}
