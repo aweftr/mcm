@@ -1,0 +1,50 @@
+\documentclass[12pt,a4paper]{article}
+
+\title{MCM学习笔记}
+\author{llz}
+\date{\today}
+\usepackage{enumerate}
+\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage[UTF8]{ctex}
+\usepackage{gensymb}
+
+
+\begin{document}
+\kaishu
+\maketitle
+
+\section{模型学习}
+
+\subsection{粒子群算法PSO}
+\subsubsection{基本理论}
+从随机解出发，通过迭代寻找最优解，即通过追随当前搜索到的最优值来寻找全局最优。适应度评价解的品质。\\
+\indent$D$维目标搜素空间，$m$个粒子组成一个群体，第i个粒子位置表示$X_i=(x_i^1,x_i^2,\dots,x_i^D)$,粒子经历过的最好位置为$P_i=(p_i^1,p_i^2,\dots,p_i^D)$,所有粒子经历过的最好位置记为$P_g=((p_g^1,p_g^2,\dots,p_g^D)$,粒子速度记为
+$V_i=(v_i^1,v_i^2,\dots,v_i^D)$。采用下列公式对粒子所在位置不断更新（单位时间1）：
+$$v_i^d=\omega v^d_i+c_1r_1(p^d_i-x^d_i)+c_2r_2(p^d_g-x^d_i)$$
+$$x^d_i=x^d_i+\alpha v^d_i$$
+其中$\omega$ 为惯性因子，$c_1$和$c_2$为加速常数，$r_1$和$r_2$为[0,1]内的随机数，$\alpha$ 为约束因子，$v^d_i$限制
+在$[-v^d_{max},v^d_{max}]$.
+\subsubsection{约束优化}
+\begin{enumerate}
+\item 罚函数法：将约束优化问题转化为无约束优化问题。
+\item 将粒子群的搜索范围都限制在条件约束簇内，即在可行解范围内寻优。
+\end{enumerate}
+\subsubsection{应用案例：神经网络}
+
+\subsection{模拟退火算法SA}
+\subsubsection{基本原理}
+温度$T$作为控制参数，目标函数值$f$视为内能$E$，而固体在某温度$T$时的一个状态对应一个解$x_i$。然后算法试图随着控制参数$T$的降低，使目标函数值$f$也逐渐降低，直至趋于全局最小值。
+\subsubsection{应用案例}
+\begin{enumerate}
+\item{旅行商问题TSP:}
+\begin{center}
+\emph{新解产生：}二变换法、三变换法\\
+\emph{Metropolis接受准则：}以目标函数差定义接受概率。
+\end{center}
+\item{背包问题}
+\end{enumerate}
+
+\section{latex学习}
+
+\end{document}
