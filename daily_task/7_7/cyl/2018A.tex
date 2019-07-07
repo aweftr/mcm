@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{amsfonts}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+%\uppercase\expandafter{\romannumeral1}:% 罗马数字。
+
+\lstset{
+language=Matlab,
+keywordstyle= \color{blue!70},
+commentstyle= \color{red!50!green!50!blue!50},
+breaklines
+}%设置listing插入语言
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\geometry{bottom =3cm}
+\newcommand{\textbi}[1]{%
+\textbf{\textit{#1}}}
+
+\newcommand{\ncolor}[1]{%
+{\color[RGB]{139,117,0}{#1}}}
+\newtheorem{theorem}{Theorem}[section]
+\newenvironment{solution}{{\noindent \it \textbf{Solution:}}\\}
+
+\title{MCM daily}
+\author{Yunlong Cheng}
+
+\begin{document}
+\maketitle
+\section{高温作业专用服装设计}
+\subsection{问题重述}
+高温作业服共有三层，其中第1层和外界环境接触，第3层与皮肤之间为第4层。解决下列问题：
+\begin{enumerate}
+  \item 服装参数由附件1给出，针对数据建立数学模型，计算温度分布。
+  \item 环境温度为65°C、第四层的厚度为5.5 mm 时，确定第2层最优厚度，确保工作60分钟，假人皮肤外侧温度不超过47°C，且超过44°C的时间不超过5分钟。
+  \item 当环境温度为80°C时，确定第二层和第四层的最优厚度，确保工作 30 分钟时，假人皮肤外侧温度不超过47°C，且超过44°C的时间不超过5分钟。
+\end{enumerate}
+
+\section{问题分析与建模}
+\subsection{问题分析}
+\begin{enumerate}
+  \item 问题一：本质就是建立热传导方程，其中要意识到实验室环境和第一层之间以及第四层和皮肤之间存在\textbf{对流换热}。通过给定的温度数据计算相应的对流换热系数$h_1,h_2$。确定热传导方程组。对$h_1$赋值，确定最佳情况的$h_1$，进而确定$h_2$。
+  \item 问题二：防热服应该尽可能地轻便，节约材料，而问题二给出了第四层的厚度，其实际上就是单变量优化的问题，求第二层的最小厚度。
+  \item 问题三：该问要考虑第二层和第四层的厚度，是双变量优化问题，但是在现实生活中，第四层不影响研发成本，所以主要优化在于减小第二层的厚度。注意：第三问是判断国赛名次的重要问题，要有自己的创新方法。通过大范围枚举搜索估算两个厚度符合条件的范围，再利用小步长搜索符合条件，得到最优解。
+\end{enumerate}
+\subsection{模型建立}
+
+\end{document}
