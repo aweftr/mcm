@@ -1,0 +1,125 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{amsfonts}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+%\uppercase\expandafter{\romannumeral1}:% 罗马数字。
+
+\lstset{
+language=Matlab,
+keywordstyle= \color{blue!70},
+commentstyle= \color{red!50!green!50!blue!50},
+breaklines
+}%设置listing插入语言
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\geometry{bottom =3cm}
+\newcommand{\textbi}[1]{%
+\textbf{\textit{#1}}}
+
+\newcommand{\ncolor}[1]{%
+{\color[RGB]{139,117,0}{#1}}}
+\newtheorem{theorem}{Theorem}[section]
+\newenvironment{solution}{{\noindent \it \textbf{Solution:}}\\}
+
+\title{MCM daily}
+\author{Yunlong Cheng}
+
+\begin{document}
+\maketitle
+\section{高温作业专用服装设计}
+\subsection{问题重述}
+高温作业服共有三层，其中第1层和外界环境接触，第3层与皮肤之间为第4层。解决下列问题：
+\begin{enumerate}
+  \item 服装参数由附件1给出，针对数据建立数学模型，计算温度分布。
+  \item 环境温度为65°C、第四层的厚度为5.5 mm 时，确定第2层最优厚度，确保工作60分钟，假人皮肤外侧温度不超过47°C，且超过44°C的时间不超过5分钟。
+  \item 当环境温度为80°C时，确定第二层和第四层的最优厚度，确保工作 30 分钟时，假人皮肤外侧温度不超过47°C，且超过44°C的时间不超过5分钟。
+\end{enumerate}
+
+\section{问题分析与建模}
+\subsection{问题分析}
+\begin{enumerate}
+  \item 问题一：本质就是建立热传导方程，其中要意识到实验室环境和第一层之间以及第四层和皮肤之间存在\textbf{对流换热}。通过给定的温度数据计算相应的对流换热系数$h_1,h_2$。确定热传导方程组。对$h_1$赋值，确定最佳情况的$h_1$，进而确定$h_2$。
+  \item 问题二：防热服应该尽可能地轻便，节约材料，而问题二给出了第四层的厚度，其实际上就是单变量优化的问题，求第二层的最小厚度。
+  \item 问题三：该问要考虑第二层和第四层的厚度，是双变量优化问题，但是在现实生活中，第四层不影响研发成本，所以主要优化在于减小第二层的厚度。注意：第三问是判断国赛名次的重要问题，要有自己的创新方法。通过大范围枚举搜索估算两个厚度符合条件的范围，再利用小步长搜索符合条件，得到最优解。
+\end{enumerate}
+\subsection{模型建立}
+\subsubsection{确立热传导方程}
+三维等方向均匀介质中的热传导方程为：
+$$\frac{\partial T}{\partial t} = \alpha(\frac{\partial^2T}{\partial x^2} + \frac{\partial^2T}{\partial y^2} + \frac{\partial^2T}{\partial z^2}) + \frac{1}{c\rho}q$$
+将分层看为无限大平板，并且因为分层中没有热源，所以方程简化为：
+$$\frac{\partial T_i}{\partial t} = \alpha \frac{\partial^2T_i}{\partial x^2}$$
+\subsubsection{确定边界条件}
+热量传递主要有三种形式：热传导、对流和热辐射。需要注意的是，实验室与第一层之间、第四层与假人皮肤之间的热量传递方式为对流方式换热。所以各边界条件为：
+\begin{equation*}
+  \left\{
+  \begin{array}{ll}
+    T_i|_{x = x_i} = T_{i+1}|_{x = x_i} & (i = 1, 2, 3)\\
+    k_i\frac{\partial T_i}{\partial x}|_{x = x_i} = k_i\frac{\partial T_{i+1}}{\partial x}|_{x = x_{i+1}} & (i = 1, 2, 3)\\
+    -k_i\frac{\partial T_1}{\partial x}|_{x = x_0} + h_1T_1|_{x = x_0} = h_1T_s & \text{热对流1} \\
+    k_4\frac{\partial T_4}{\partial x}|_{x = x_4} + h_2T_4|_{x = x_4} = h_2T_r & \text{热对流2}\\
+    x_i = \sum_{j = 1}^id_i & (i = 1, 2, 3, 4)\\
+  \end{array}
+  \right.
+\end{equation*}
+
+\section{参数求解}
+\subsection{模型参数值确定}
+使用 $Crank-Nicholson$ 方法进行数值求得 $h_1$，再通过关系式计算得$h_2$。
+\subsection{问题二求解}
+对附件1给定的 $d_2$ 取值区间进行步长为 $2mm$ 的定步长搜索，确定 $d_2$ 大致范围并进一步减小搜索步长和范围，确定最优厚度。
+\subsection{问题三求解}
+因为第四层为空气层，第二层为材料层，所以只考虑第二层的成本，所以要先使第二层的厚度尽可能薄。之后采取区域搜索策略，找出所有满足条件的 $(d_2, d_4)$ 组。
+\section{模型评价}
+\subsection{灵敏度分析}
+考虑到实际生产中做工存在偏差，各分层的厚度可能与预期不同，调整各层的厚度，得到厚度变化对皮肤外侧平衡温度的影响。
+
+然后对对流换热系数 $h_1$ 进行调整得到其对第二层最优厚度的影响。
+\subsection{优缺点分析}
+
+\section{\LaTeX 学习}
+\begin{itemize}
+  \item 上下标在正上下方:
+  $\sum_i^j\rightarrow \sum\limits_i^j$
+  \item 微分算符：\verb|\mathrm{d}t|  $\rightarrow\mathrm{d}t$
+  \item 用 minipage 命令排列多张图片：
+  \begin{figure}[htbp]
+    \centering
+    \subfigure[pic1.]{
+      \begin{minipage}[t]{0.25\linewidth}
+        \centering
+        \includegraphics[width = 1in]{figures/drake.png}
+      \end{minipage}
+    }
+    \subfigure[pic2.]{
+      \begin{minipage}[t]{0.25\linewidth}
+        \centering
+        \includegraphics[width = 1in]{figures/drake.png}
+      \end{minipage}
+    }
+    \subfigure[pic3.]{
+      \begin{minipage}[t]{0.25\linewidth}
+        \centering
+        \includegraphics[width = 1in]{figures/drake.png}
+      \end{minipage}
+    }
+    \subfigure[pic4.]{
+      \begin{minipage}[t]{0.25\linewidth}
+        \centering
+        \includegraphics[width = 1in]{figures/drake.png}
+      \end{minipage}
+    }
+    \caption{what }
+  \end{figure}
+\end{itemize}
+\end{document}
