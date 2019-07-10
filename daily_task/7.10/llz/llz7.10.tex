@@ -1,0 +1,33 @@
+\documentclass[12pt,a4paper]{article}
+
+\title{MCM}
+\author{llz}
+\date{\today}
+\usepackage{enumerate}
+\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage[UTF8]{ctex}
+\usepackage{gensymb}
+
+\begin{document}
+\kaishu
+\maketitle
+
+\section{公平席位分配}
+\subsection{两方席位分配}
+\subsubsection{建立数量指标}
+\noindent标准一：绝对不公平指标：$\frac{P_1}{n_1}-\frac{P_2}{n_2}$\\
+标准二：相对不公平指标：$r_A(n_1,n_2)=\frac{\frac{P_1}{n_1}-\frac{P_2}{n_2}}{\frac{P_2}{n_2}}$,称之为相对于$B$对$A$的相对不公平值\\
+\emph{确定席位分配方案的原则是使他们尽可能小}
+
+\subsubsection{确定分配方案}
+\begin{enumerate}
+\item 若$\frac{P_1}{n_1+1}>\frac{P_2}{n_2}$.则增加席位给A
+\item 若$\frac{P_1}{n_1}>\frac{P_2}{n_2},\frac{P_1}{n_1+1}<\frac{P_2}{n_2}$,计算$r_a(n_1,n_2+1)$,$r_B(n_1+1,n_2)$,若$r_B(n_1+1,n_2)<r_a(n_1,n_2+1)$,则分配给$A$，反之分配给$B$.
+\end{enumerate}
+\underline{分配原则时使相对不公平值尽可能小}
+
+\subsection{$Q$-值法与$m$方席位的分配}
+设第$i$方人数为$P_i$,已占有$n_i$席，当总席数增加1时，计算$Q_i=\frac{P_i^2}{n_i(n_i+1)}$,则增加的1席分配给Q值大的一方
+
+\end{document}
