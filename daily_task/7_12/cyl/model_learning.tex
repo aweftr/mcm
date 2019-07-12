@@ -1,0 +1,78 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{amsfonts}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+%\uppercase\expandafter{\romannumeral1}:% 罗马数字。
+
+\lstset{
+language=Matlab,
+keywordstyle= \color{blue!70},
+commentstyle= \color{red!50!green!50!blue!50},
+breaklines
+}%设置listing插入语言
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\geometry{bottom =3cm}
+\newcommand{\textbi}[1]{%
+\textbf{\textit{#1}}}
+
+\newcommand{\ncolor}[1]{%
+{\color[RGB]{139,117,0}{#1}}}
+\newtheorem{theorem}{Theorem}[section]
+\newenvironment{solution}{{\noindent \it \textbf{Solution:}}\\}
+
+\title{MCM daily}
+\author{Yunlong Cheng}
+
+\begin{document}
+\maketitle
+\section{粒子群 (PSO) 算法}
+\subsection{初识 PSO 算法}
+\begin{enumerate}
+  \item 属于软计算。
+  \item 对群体行为有简单的准则：
+  \begin{itemize}
+    \item 冲突避免
+    \item 速度匹配
+    \item 群体中心
+  \end{itemize}
+\end{enumerate}
+\subsection{PSO 算法的基本理论}
+在1995年基于群鸟觅食提出。
+
+每个个体看成一个粒子，鸟群看成一个粒子群。在 $D$ 维目标搜索空间中，有 $m$ 个粒子组成一个群体，每个粒子的位置就是一个潜在解，将 $X_i$ 带入目标函数计算适应值，根据适应值的大小衡量其优劣。粒子个体经历过的最好位置为 $P_i$，整个群体所有粒子经历过的最好位置记为 $P_g$。粒子 $i$ 的速度记为 $V_i$。
+
+采用下列公式对例子所在位置不断更新：
+$$v_i^d = \omega v_i^d + c_1r_1(p_i^d - x_i^d) + c_2r_2(p_g^d - x_i^d)$$
+$$x_i^d = x_i^d + \alpha v_i^d$$
+其中 $\omega$ 为惯性因子，非负，$c_1,c_2$ 为加速常数，非负，$r_1,r_2$为[0,1]范围内变换的随机数，$\alpha$为约束因子，控制速度权重。
+\subsection{约束优化}
+\begin{itemize}
+  \item 罚函数法
+  \item 将搜索范围限制在条件约束簇内。
+\end{itemize}
+\subsection{优缺点}
+优点：
+\begin{itemize}
+  \item 容易飞跃局部最优信息。
+  \item 调整参数少，原理简单。
+\end{itemize}
+缺点：
+\begin{itemize}
+  \item 搜索精度不高。
+  \item 不能保证搜索到全局最优解。
+  \item 算法理论不完善，无数学方面严格证明。
+\end{itemize}
+\subsection{程序设计}
+\end{document}
