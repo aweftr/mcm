@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{amsfonts}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+%\uppercase\expandafter{\romannumeral1}:% 罗马数字。
+
+\lstset{
+language=Matlab,
+keywordstyle= \color{blue!70},
+commentstyle= \color{red!50!green!50!blue!50},
+breaklines
+}%设置listing插入语言
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\geometry{bottom =3cm}
+\newcommand{\textbi}[1]{%
+\textbf{\textit{#1}}}
+
+\newcommand{\ncolor}[1]{%
+{\color[RGB]{139,117,0}{#1}}}
+\newtheorem{theorem}{Theorem}[section]
+\newenvironment{solution}{{\noindent \it \textbf{Solution:}}\\}
+
+\title{MCM daily}
+\author{Yunlong Cheng}
+
+\begin{document}
+\maketitle
+\section{PSO 算法后续}
+\subsection{参数选取}
+\begin{enumerate}
+  \item 粒子数 $m$ 一般取 $20\sim 40$，粒子数越多额容易找到全局最优解，运行时间越长。
+  \item 惯性因子 $\omega$，越大容易失去局部寻优功能，而全局搜索能力越强。可以是变量，在迭代过程中逐渐减小，也可以是常量。
+  \item 加速常数 $c_1$ 和 $c_2$，一般都取2.0。
+  \item 最大飞翔速度 $v_{max}$，通常 $v_{max}$ 设置为每维变化范围的 $10\%\sim 20\%$
+\end{enumerate}
+\section{基于 $PSO$ 算法和 $BP$ 算法训练神经网络}
+$BP$ 神经网络容易陷入局部最小值。先将网络用 $PSO$ 算法训练，再用 $BP$ 算法接着进行小范围精细搜索。
+\section{模拟退火算法(SA)}
+\subsection{概述与基本思想}
+\begin{itemize}
+  \item 是一种通用概率算法。
+  \item 源于固体的退火过程。
+  \item 1953年Metropolis提出重要性采样的方法--Metropolis准则。
+\end{itemize}
+\subsection{参数说明}
+\begin{itemize}
+  \item 由一组初始参数，即冷却进度表(cooling schedule)控制。
+  \item 核心是尽量使系统达到准平衡。
+  \item 进度表包括：
+  \begin{enumerate}
+    \item $T_0$:冷却开始的温度。
+    \item 控制参数 $T$ 的衰减函数。
+    \item 控制参数 $T$ 的终值 $T_f$。
+    \item Markov 链的长度 $L_k$:任意温度 $T$ 的迭代次数。
+  \end{enumerate}
+\end{itemize}
+\subsection{基本步骤}
+\begin{enumerate}
+  \item 令 $T = T_0$，随机生成一个初始解 $x_0$，计算目标函数 $E(x_0)$。
+  \item 令 $T$ 等于冷却进度表中的下一个值 $T_i$。
+  \item 根据当前解 $x_i$ 进行扰动,产生一个新解 $x_j$ 计算相应目标函数值。
+  \item 若 $\Delta E<0$，则新解 $x_j$ 被接受，作为新的当前解；若 $\Delta E>0 $，则新解 $x_j$ 按概率 $e^{-\frac{\Delta E}{T_i}}$接受。
+  \item 再温度 $T_i$ 下，重复 $L_k$ 次扰动和接受过程。
+  \item 判断 $T$ 是否到达 $T_f$。
+\end{enumerate}
+ \textbf{注意：}虽然在低温时接收函数很小，但不排除有接受更差的解的可能，因此一般会把退火过程中碰到的最好的可行解记录下来，与终止算法前最后一个接受解一并输出。
+\subsection{几点说明}
+\begin{enumerate}
+  \item 状态表达。
+  \item 新解产生。
+  \item 收敛的一般性条件。
+  \item 参数选择
+  \begin{enumerate}
+    \item $T_0$
+    \item 控制参数 $T$ 的衰减函数。
+    \item Markov 链长度。
+  \end{enumerate}
+\end{enumerate}
+\end{document}
