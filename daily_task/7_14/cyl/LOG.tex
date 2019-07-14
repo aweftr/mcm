@@ -1,0 +1,253 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{amsfonts}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+%\uppercase\expandafter{\romannumeral1}:% 罗马数字。
+
+\lstset{
+language=Matlab,
+keywordstyle= \color{blue!70},
+commentstyle= \color{red!50!green!50!blue!50},
+breaklines
+}%设置listing插入语言
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\geometry{bottom =3cm}
+\newcommand{\textbi}[1]{%
+\textbf{\textit{#1}}}
+
+\newcommand{\ncolor}[1]{%
+{\color[RGB]{139,117,0}{#1}}}
+\newtheorem{theorem}{Theorem}[section]
+\newenvironment{solution}{{\noindent \it \textbf{Solution:}}\\}
+
+\title{model LOG}
+\author{Yunlong Cheng}
+
+\begin{document}
+\maketitle
+\section{排队论与随机过程}
+\subsection{是什么，解决什么问题}
+适用场景：一个有滞留/阻碍现象的系统。
+
+例子
+\subsection{知识补充}
+\begin{itemize}
+  \item \textbf{马尔可夫过程:}随机游走(醉汉)，概统书上有。
+  \item \textbf{指数分布，泊松分布}
+  \item \textbf{技术过程：}表示到事件 $t$ 为止发生的事件的总数。
+  \item \textbf{独立增量，平稳增量}
+  \item \textbf{泊松过程}
+  \item \textbf{排队理论：}生灭过程
+  \item \textbf{记号：}X/Y/Z/A/B/C，M:指数分布，k:服务台数量，G:一般分布？
+  \item \textbf{基本量和价格方程：}$P_0$
+  \item \textbf{稳态概率：}纠错：$P_n = \lim_{t \to \infty}P\{X(t) = n\}$
+  \item \textbf{平衡方程：}$()$
+\end{itemize}
+\subsection{变形}
+\begin{itemize}
+  \item 有限容量的 M/M/1 型(常用)
+  \item 到达率和离开率不是定值
+  \item M/M/k型(k个服务台)
+\end{itemize}
+\subsection{例子}
+\begin{enumerate}
+  \item 擦鞋店：
+  \begin{itemize}
+    \item 5个状态
+    \item 列出平衡方程，还有概率之和为1
+    \item 求解，计算平均顾客数，所耗时间
+  \end{itemize}
+  \item 串联排队系统：
+  \begin{itemize}
+    \item 猜测结果，螺旋归纳
+  \end{itemize}
+  \item 推广：含有 k 条服务线的排队网络（结果用计算机模拟）
+\end{enumerate}
+\subsection{案例分析}
+\begin{enumerate}
+  \item 机场安检扫描机安置：\textbf{创新点}，算法找改进算法
+  \item 高速公路收费站设计：\textbf{创新点}，多重选择
+  \item 元胞自动机：例子：飞机后排先上前排后上。
+\end{enumerate}
+
+\section{评价类模型}
+\subsection{打分式评价}
+\subsubsection{层次分析法 (AHP)}
+基本方法
+
+步骤一：分层
+\begin{itemize}
+  \item 目标
+  \item 准则
+  \item 方案
+\end{itemize}
+步骤二：确定下层因素对上层因素的权重（相互比较）
+量表，在5-9个因素范围内
+
+步骤三：计算权向量并且做一致性检验
+
+步骤四：组合权向量，可能要一致性检验(方法自查)
+
+总结：一般之前模型已经建立，所以只需求准则层对目标层的权重
+
+\subsubsection{网络分析法(ANP)}
+有双向作用，层之间也有作用。
+一般不用。。
+
+\subsubsection{模糊综合分析与评价}
+应用场景：多用于
+
+数学表述：
+\begin{itemize}
+  \item 因素集
+  \item 评语集
+  \item 评价因素的权重向量
+  \item
+\end{itemize}
+
+\subsubsection{灰色关联度与评价}
+关联度分析
+
+数学表述：
+\begin{itemize}
+  \item 构造原始数据矩阵
+  \item 标准化处理（无量纲化）(重要)
+  \begin{itemize}
+    \item 初值像
+    \item 均值像
+    \item 区间值像
+  \end{itemize}
+  \item 计算灰色关联系数(重要)($\theta$ 灵敏度分析)
+  \item 得到灰色关联度矩阵
+\end{itemize}
+
+要么选择最好的序列，要么是赛题已给数据。
+\subsubsection{数据包络分析(DEA)}
+很少用
+
+用线性规划求效率
+
+数学表述：。。。
+
+\subsubsection{主成分分析}
+降维方法(将 n 维映射到 k 维)，用较少变量解释原数据中大部分差异
+
+主成分：原始数据中蕴含的，能解释大部分变异的新变量。
+
+用于综合评价：
+\begin{itemize}
+  \item 标准化处理
+  \item 计算相关系数矩阵R
+  \item 计算特征值和特征向量
+  \item 选择 p 个主成分 $(p\le m)$ 计算综合评价值
+  \item 计算综合得分
+\end{itemize}
+
+非线性，多线性，高阶，稀疏 PCA
+实现调库即可
+
+\subsubsection{理想解方法(TOPSIS)}
+比较重要
+
+应用场景：多目标规划转单目标规划
+
+相对客观，对数据要求少
+
+两种方法：
+\begin{itemize}
+  \item ideal point method:唯一
+  \item TOPSIS:存在正理想解和负理想解。
+\end{itemize}
+
+\subsubsection{熵权法}
+idea: 信息熵越小，作用越大
+
+引用场景：样本决策方案书要大于指标数k
+
+\begin{itemize}
+  \item 对原始数据归一化，标准化处理
+  \item 算各指标的信息熵
+  \item 根据信息熵确定权重
+  \item 确定最优决策
+\end{itemize}
+
+\subsubsection{加权和和加权积}
+加权和要对数据规范化
+
+加权积不需要规范化
+\subsection{统计类评价}
+较小的建模方法，非主旋律
+
+实现：SPSS
+
+基本概念：概统中数理统计
+
+判定系数：是相关系数的平方
+
+\begin{itemize}
+  \item 皮尔森相关系数:线性相关
+  \item 斯皮尔曼（Spearman）相关系数:单调相关
+  \item 肯德尔(Kendall)和谐系数：计算等级变量相关程度的一种相关量。
+  \item Wilcoxon 符号秩
+
+  计算
+\end{itemize}
+
+方差分析
+
+卡方检验
+
+KS(Kolmogorov-Smirnov)检验:不需要知道数据的分布情况。非参数检验方法。
+
+\section{启发式算法}
+\subsection{综述}
+在既定的区间找出函数的最大值。
+
+\subsection{模拟退火}
+初始温度：
+\begin{itemize}
+  \item 均匀抽样一组状态，以各状态目标值的方差为初温。
+  \item .
+  \item .
+\end{itemize}
+
+\subsubsection{模拟退火应用}
+\begin{itemize}
+  \item 求费马点
+  \item 找点到 n 条线段的距离和最小
+  \item 给定三维空间 n 点，找半径最小的球把这些点全部包围。
+\end{itemize}
+\subsubsection{调参}
+多跑几遍，换随机种子？
+\subsubsection{挑战}
+\begin{itemize}
+  \item 平衡点
+  \item TSP
+\end{itemize}
+
+
+\subsection{遗传算法}
+\begin{itemize}
+  \item 编码
+  \item 设定适应度函数
+  \item 选择
+  \item 交叉
+  \item 变异
+\end{itemize}
+
+\subsection{禁忌搜索}
+\subsection{免疫算法}
+
+\end{document}
