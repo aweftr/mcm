@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+
+\title{MCM}
+\author{llz}
+\date{\today}
+\usepackage{enumerate}
+\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage[UTF8]{ctex}
+\usepackage{gensymb}
+
+\begin{document}
+\kaishu
+\maketitle
+
+\section{存贮模型}
+\subsection{不允许缺货的确定性贮存模型}
+\subsubsection{模型假设}
+\begin{enumerate}
+\item在任何时刻，单位时间（每天）对物品的需求量恒为$r$吨；即经营商品单一，顾客对该物品需求量在时间上保持恒定；
+\item每隔时间$T$天进货$Q$吨；且假设每次进货是在存货全部售出后即刻进行，不允许缺货，即$Q=rT$;
+\item每次进货需支付订货费$c_1$，在正常期间，还需支付货物的贮存费用，单位时间（天）单位（吨）货物需支付货物的贮存费用$c_2$;
+\item 以$q(t)$表示在时刻$t$该货物的存量
+\end{enumerate}
+\subsubsection{模型建立}
+ $$Min:C=\frac{(c_1+c_2\int_{0}^{T}q(t)dt)}{T}$$\\
+\begin{displaymath}
+\begin{split}
+ s.t \quad q(t)&=Q-rt\\
+ Q&=rT
+\end{split}
+\end{displaymath}
+进一步简化得到：\\
+$$Min: C=\frac{c_1}{T}+\frac{C_2 rT}{2}$$
+\subsubsection{模型求解}
+令$\frac{dC}{dT}=0$,得最优进货周期$T=\sqrt{\frac{2c_1}{rc_2}}$,进而每次的进货量$Q=rT=\sqrt{\frac{2rc_1}{c_2}}$\\
+即经济订货批量公式
+
+\subsubsection{模型点评}
+从模型的解可以发现，当订货费越高，需求量越大时，一次订货量应越大；当贮存费越高，一次订货量应越小。这些关系是符合常识的，但仅凭常识是不能得到准确的依从关系。
+
+\subsection{允许缺货的确定性贮存模型}
+\subsubsection{模型假设}
+\begin{enumerate}
+\item在任何时刻，单位时间（每天）对物品的需求量恒为$r$吨；即经营商品单一，顾客对该物品需求量在时间上保持恒定；
+\item每隔时间$T$天进货$Q$吨；且假设每次进货是在存货全部售出后即刻进行，允许缺货，即$Q\le rT$;
+\item每次进货需支付订货费$c_1$，在正常期间，还需支付货物的贮存费用，单位时间（天）单位（吨）货物需支付货物的贮存费用$c_2$;每天单位时间（天）单位（吨）货物需支付缺货费$c_3$；
+\item 以$q(t)$表示在时刻$t$该货物的存量,当$q(t)\le 0$时表示缺货
+\end{enumerate}
+\subsubsection{模型建立}
+ $$Min:C=\frac{c_1+c_2\int_{0}^{\frac{Q}{r}}q(t)dt-c_3\int{\frac{Q}{r}}{T}q(t)dt}{T}$$\\
+\begin{displaymath}
+ s.t \quad q(t)=Q-rt\\
+\end{displaymath}
+进一步化简：\\
+$$Min: C=\frac{c_1}{T}+\frac{C_2 Q^2}{2rT}+\frac{c_3{(rT-Q)}^2}{2rT}$$
+\subsubsection{模型求解}
+令$\frac{dC}{dT}=0$,$\frac{dC}{dQ}=0$得最优进货周期$T=\sqrt{\frac{2c_1}{rc_2}}\sqrt{\frac{c_2+c_3}{c_3}}$,进而每次的进货量
+$Q=\sqrt{\frac{2rc_1}{c_2}}\sqrt{\frac{c_3}{c_2+c_3}}$\\
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
