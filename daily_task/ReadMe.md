@@ -4,7 +4,7 @@ The following is a table showing your attendance.
 
 # Please follow the naming rules of the folder
 ## For example: 7_10 not 7.10
-
+## I have wrote some LOG about the third training, you can see my 7_14 folder
 |name   |  7.1  |  7.2  |  7.3  |  7.4  |  7.5  |  7.6  |  7.7  |
 |:-----:|  :--  | :---  | :---  | :---  | :---  | :---  | :---  |
 |程云龙 |&#9745;|&#9745;|&#9745;|&#9744;|&#9745;|&#9745;|&#9745;|
