@@ -1,0 +1,72 @@
+\documentclass{cumcm}
+
+
+% \title{text}这里是显示在第三页的文章标题
+\title{}
+% \displaytitle{text} 这里是显示在承诺书上的文章标题，注意，不能换行，如果题目特别长，要进行适当的缩写
+\displaytitle{}
+% \school{text}命令用于在承诺书上显示学校名称。按要求，此处应填写全称
+\school{上海交通大学}
+% 以下命令分别显示队员、指导教师姓名以及队伍编号
+\authorone{}
+\authortwo{}
+\authorthree{}
+\advisor{}
+\teamnumber{}
+
+\begin{document}
+
+% 这里用于打印承诺书以及编号页
+ \input{declaration.tex}
+
+\begin{minipage}{0.9\textwidth}
+\centering\LARGE\textbf{基于的目标规划模型的系泊系统设计}
+\end{minipage}
+
+% \begin{abstract} 摘要
+
+% \textbf{关键词} 关键词
+\end{abstract}
+
+\newpage
+\section{问题重述}
+\subsection{问题背景}
+
+\subsection{问题的提出（题目重述）}
+
+
+
+\section{模型假设}
+
+\section{假设说明}
+
+\section{符号说明}
+
+\section{问题分析}
+\subsection{问题一的分析}
+
+\subsection{问题二的分析}
+
+
+\section{问题的解答}
+\subsection{问题1的解答}
+
+\subsection{问题2的解答}
+
+
+\section{模型总结}
+
+\subsection{模型优点}
+
+\subsection{模型缺点}
+
+
+\bibliographystyle{plain}
+\bibliography{ref}
+
+\newpage
+\appendix
+\textbf{附录}
+\section{模型求解代码}
+
+\end{document}
