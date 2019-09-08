@@ -1,8 +1,8 @@
 load B0005.mat
 cycle = B0005.cycle;
-size_of_cycle = size(cycle);
+size_of_cycle = size(cycle, 2);
 hold on
-for i = 1:size_of_cycle(2)
+for i = 1:size_of_cycle
     if strcmp(cycle(i).type, 'charge')
         charge_cycle = cycle(i);
         if charge_cycle.data.Voltage_measured(1) >= 5
