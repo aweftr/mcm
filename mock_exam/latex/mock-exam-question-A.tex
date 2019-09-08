@@ -1,33 +1,20 @@
 \documentclass{cumcm}
 
 
-% \title{text}这里是显示在第三页的文章标题
-\title{锂电池SOH预测模型设计}
-% \displaytitle{text} 这里是显示在承诺书上的文章标题，注意，不能换行，如果题目特别长，要进行适当的缩写
-\displaytitle{锂电池SOH预测模型设计}
-% \school{text}命令用于在承诺书上显示学校名称。按要求，此处应填写全称
-\school{上海交通大学}
-% 以下命令分别显示队员、指导教师姓名以及队伍编号
-\authorone{程云龙}
-\authortwo{李羚子}
-\authorthree{李汉威}
-\advisor{高晓沨}
-\teamnumber{130}
+
 
 \begin{document}
 
-% 这里用于打印承诺书以及编号页
- \input{declaration.tex}
 
 \begin{minipage}{0.9\textwidth}
-\centering\LARGE\textbf{锂电池SOH预测模型设计}
+\centering\LARGE\textbf{基于电化学阻抗普法的锂电池SOH预测模型}
 \end{minipage}
 \begin{abstract}
-本题题意在于通过对测试数据充足的锂电池建立SOH模型，找出可测数据与电池SOH之间的关系，并使模型适用于不同的锂电池，进而完成测试数据较少的锂电池SOH预测。\par
-\textbf{针对问题一}\quad 我们通过采用电化学阻抗谱法和电压曲线拟合法，分别找出电池电阻、恒流充电电压与电池SOH之间的关系，从而建立预测模型。然后利用层次分析法，找出内阻与电压两个因素对电池SOH影响所占权重，加权计算出
-
-
-\textbf{关键词} \quad MATLAB \quad 电化学阻抗谱法  \quad 电压曲线拟合法
+本题题意在于通过对测试数据充足的锂电池建立SOH模型，找出可测数据与电池SOH之间的关系，并使模型适用于不同的锂电池，进而完成测试数据较少的锂电池SOH预测。本篇论文采用电化学阻抗谱法完成对电池SOH的预测分析。\par
+\textbf{电化学阻抗谱法} \quad 研究电池单体的老化规律，从电池寿命的定义、交流阻抗测量条件的制定，到阻抗参数与电池老化规律分析，至最终的SOH算法开发，已有的研究验证了该方法估算电池SOH的可行性。\par
+\textbf{针对问题一}\quad 我们首先需要完成对源数据中，电池SOH与循环次数关系曲线、电池内阻与循环次数关系曲线分析，来验证该锂电池满足电化学阻抗谱法的使用条件，然后通过MATLAB拟合出电池内阻与电池SOH的关系曲线，找出电池内阻与电池SOH之间的关系式，从而建立出普适的预测模型，来预测目标数据的电池SOH，并算出预测SOH与真实值的均方根误差，检验模型的准确程度。\par
+\textbf{针对问题二} \quad \par
+\textbf{关键词} \quad MATLAB \quad 电化学阻抗谱法  \quad 锂电池SOH
 \end{abstract}
 
 \newpage
@@ -47,31 +34,31 @@
 \item 在本题所给数据中，环境温度恒为$24^\circ$C,所以外界环境温度对电池SOH的影响不予考虑。
 \item 不考虑恒压充电情况。
 \item 不考虑充放电电流对电池SOH值影响。
-\item 将电池EIS、恒流充电电压作为电池SOH的两大影响因素。
+\item 将电池EIS作为电池SOH的两大影响因素。
 \end{enumerate}
 \section{假设说明}
 \begin{enumerate}
 \item EIS为电池老化过程中阻抗谱变化。
-%\item 由参考文献\cite{}可知，在恒压充电情况下，电池SOH值改变较小，可忽略，仅考虑恒流充电情况。
+\item 由参考文献[2]可知，在恒压充电情况下，电池SOH值改变较小，可忽略，仅考虑恒流充电情况。
 \item 考虑电池在放电过程中，放电电流、温度等因素较为复杂，而充电过程情况较为稳定，因此选用电池充电电压曲线拟合估算。
-%\item 由论文\cite{}可知，电池EIS会随着电池老化而发生相应改变，说明EIS变化与电池SOH衰减具有相关性。
+\item 由参考文献[2]可知，电池EIS会随着电池老化而发生相应改变，说明EIS变化与电池SOH衰减具有相关性。
 \end{enumerate}
 
-
+\section{方法介绍}
+锂离子电池阻抗谱模型基于多孔电极理论和浓溶液理论提出，清华大学$Li zhe$等提出模型从单个粒子、凝聚物、多孔电极三个尺度上逐次建立基于机理的电池阻抗模型，具有较高的精度。首先，在单个粒子的阻抗模型中，通过对频率的小正弦信号的激励下的系统的控制方程的求解来建立阻抗响应，得到的单个粒子阻抗。在凝聚物阻抗和多孔电极阻抗建模中，是通过代表性体积单元来平均微观方程，如用体积平均法平均液相控制方程等，最后得到凝聚物阻抗和多孔电极阻抗，即电化学阻抗谱模型。
 \section{问题分析}
 对于问题一和问题二，可采用同样的方法进行建模。\par
-由题目所给测试数据及所查参考文献，对于锂电池老化机理分析，我们仅考虑电池EIS及恒压充电电压两个因素的改变对电池SOH值的影响。%论文\cite{}
-对阻抗参数与电池老化规律进行了分析，并验证了基于阻抗法估算电池SOH的可行性。通过电化学阻抗谱模型可以建立电池EIS与电池老化过程中相应内部参数之间的联系；通过电压曲线拟合法得出充电电压与电池SOH的关系。然后利用层次分析法，找出两因素的影响权重，加权计算得到最终的SOH预测结果，算出其与真实SOH的均方根误差，进行比较。
+由题目所给测试数据及所查参考文献，对于锂电池老化机理分析，从锂离子电池众多特性中找到一个或多个可以准确衡量电池性能的参数，显然参数越多越好，越能反映电池内部状态越好。EIS在众多特性参数中脱颖而出，与电池的外特性端电压相比，EIS的各频段对应于相关的电化学反应过程，具有原位、无损反应电池内部电化学反应机理的特点。此外，电池的EIS会随着电池老化而发生相应变化，说明EIS的变化与电池性能退化之间具有相关性，通过电化学阻抗谱模型可以建立电池EIS与电池老化过程中电池内部参数之间的联系，进而了解电池的健康。\cite{1}
 \subsection{问题一分析}
-\begin{enumerate}[(1)]
-\item \textbf{电化学阻抗谱法}\par
 本题所给测试数据中，采用循环充放电方式对BOOO7号样本电池老化试验，我们可得出随着循环次数的增加，电池SOH衰减曲线，如图所示：
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/7-SOH-cycle.png}
 \caption{电池B0007的SOH与循环次数关系曲线}\label{figure-a}
 \end{figure}
-在循环次数内，SOH值基本呈线性下降，属正常老化。同时，电池内阻随着循环次数增加而逐步增加，可得到如图所示结果。
+
+\newpage
+在循环次数内，SOH值基本呈线性下降，属正常老化。同时，电池内阻随着循环次数增加而逐步增加，可得到如图所示结果：
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/R-cycle.png}
@@ -84,28 +71,26 @@
 \includegraphics[width=0.8\textwidth]{img/R-cycle-fit.png}
 \caption{电池B0007的内阻与循环次数的拟合曲线}
 \end{figure}
+该曲线与交流阻抗变化规律吻合，随着电池老化阻值不断增加。所以我们可认为在数据所给的循环次数内，电池处于正常老化区域。
 所以，所给数据符合电化学阻抗谱法适用条件。
 
-\item \textbf{电压曲线拟合法}
-\end{enumerate}
+
 \subsection{问题二分析}
 
 
 
 \section{问题的解答}
 \subsection{问题1的解答}
-\begin{enumerate}[(1)]
-\item \textbf{电化学阻抗谱法}
+
 我们用电阻测试结果表示SOH，可获得如图的SOH和电池电阻关系图，分析数据可知，电池SOH随着电阻老化呈单调下降，采用四次拟合的方法，我们可近似计算电池SOH老化规律曲线
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/SOH-R-fit.png}
 \caption{电池B0007的SOH与其内阻变化曲线}
 \end{figure}
-通过MATLAB拟合求解，可得到相关系数为$0.9483$,表明两者相关性较强，可用该模型来预测B0005电池SOH。代入目标数据求得B0005预测SOH与真实值之间的均方根误差为$0.0296j$。
-\item \textbf{电压曲线拟合法}
+通过MATLAB拟合求解，可得到相关系数为$0.9483$,表明电池内阻与电池SOH相关性较强，建立的模型具有一定的可靠性，可用该模型来预测B0005电池SOH。代入目标数据求得B0005预测SOH与真实值之间的均方根误差为$0.0296$
 
-\end{enumerate}
+
 \subsection{问题2的解答}
 
 
@@ -115,9 +100,13 @@
 
 \subsection{模型缺点}
 
-
 \bibliographystyle{plain}
 \bibliography{ref}
+\begin{thebibliography}{99}
+\bibitem{1}徐鑫珉、王练、史慧玲.基于电化学阻抗谱的电池老化寿命研究.电源技术.2018
+\bibitem{2}丛巍.基于电化学阻抗模型的锂离子电池寿命预测研究.哈尔滨工业大学.2017
+\bibitem{3} 
+\end{thebibliography}
 
 \newpage
 \appendix
@@ -125,4 +114,3 @@
 \section{模型求解代码}
 
 \end{document}
-
