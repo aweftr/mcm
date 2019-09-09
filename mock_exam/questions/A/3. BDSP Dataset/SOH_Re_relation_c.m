@@ -38,7 +38,7 @@ for i = 1:size_of_icycle_7
 end
 plot(SOH_R(:,2), SOH_R(:,1));
 fit_SOH_R = polyfit(SOH_R(:,2), SOH_R(:,1), 4);
-
+corrcoef(polyval(fit_SOH_R, SOH_R(:,2)), SOH_R(:,1))
 
 % 预测50%的B0005的数据集
 load B0005.mat
@@ -100,10 +100,10 @@ for i = 1:size_of_icycle_5
 end
 size_of_SOH = size(SOH,1);
 x = 1:size_of_SOH;
-plot(x, SOH(:,1), x, SOH(:,2));
+% plot(x, SOH(:,1), x, SOH(:,2));
 
 ee = sqrt(sum((SOH(:,1) - SOH(:,2)).^2) / size(SOH,1))
-
+% ee = 0.0296
 
 
 

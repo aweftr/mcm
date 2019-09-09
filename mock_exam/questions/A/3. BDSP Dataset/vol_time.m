@@ -10,8 +10,8 @@ for i = 1:size_of_cycle
         end
         size_of_Time = size(charge_cycle.data.Time);
         if size_of_Time(2) > 50
-            % plot(charge_cycle.data.Time(2:50), charge_cycle.data.Voltage_measured(2:50));
-            plot(charge_cycle.data.Time, charge_cycle.data.Voltage_measured);
+            plot(charge_cycle.data.Time(1:50), charge_cycle.data.Voltage_measured(1:50));
+%             plot(charge_cycle.data.Time, charge_cycle.data.Voltage_measured);
         else
             plot(charge_cycle.data.Time, charge_cycle.data.Voltage_measured);
         end
