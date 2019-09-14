@@ -5,9 +5,9 @@
 
 \end{minipage}
 \begin{abstract}
-本题在于考察分析同心球项目中不同情境下，通过调整团队队员发力的时机及力度，找出团队协作的最佳策略，使排球在鼓面上能持续颠起。\par
+本题在于考察分析同心球项目在不同情境下，通过调整团队队员发力的时机及力度，找出团队协作的最佳策略，使排球在鼓面上能持续颠起。\par
 \begin{itemize}
-\item \textbf{针对问题一分析}\quad 首先对于人数的一般值进行分析，确定绳长及人相对同心鼓的最佳站位和分布。我们将一次完整的颠球过程（鼓从初始位置出发到回到初始位置的过程）分为三个阶段，建立竖直平面内的运动模型.以排球和同心鼓的理想运动过程为稳定周期运动为切入点，对于周期内各个阶段的位移、时间关系设列运动关系方程。然后根据对同心鼓建立空间受力分析模型，使用得到的牛顿第二定律方程与前面的运动关系方程联立，得到各物理量值。计算出在最佳策略下，每位队员只需施加的大小为$6.25861N$的力，使鼓与排球碰撞，在碰撞结束$0.090s$后，施加$0.337s$的大小为$7.14003N$的力，使鼓回到原位置，完成一次周期。
+\item \textbf{针对问题一分析}\quad 首先对于人数的一般值进行分析，确定绳长及人相对同心鼓的最佳站位和分布。我们将一次完整的颠球过程（鼓从初始位置出发到回到初始位置的过程）分为三个阶段，建立竖直平面内的运动模型.以排球和同心鼓的理想运动过程是稳定周期运动为切入点，对于周期内各个阶段的位移、时间关系设列运动关系方程。然后根据对同心鼓建立空间受力分析模型，使用得到的牛顿第二定律方程与前面的运动关系方程联立，得到各物理量值。计算出在最佳策略下，每位队员只需施加的大小为$6.25861N$的力，使鼓与排球碰撞，在碰撞结束$0.090s$后，施加$0.337s$的大小为$7.14003N$的力，使鼓回到原位置，完成一次周期。
 \\
 \item \textbf{问题二分析}\quad\\
 \item \textbf{问题三分析}\quad\\
@@ -36,7 +36,7 @@
 \item 当地重力加速度为$9.8kg/m^2$。
 \item 排球是一个直径为$204mm$的五号标准排球。
 \item 将排球视为一个均匀球壳。
-\item 每位队员所隔距离相同，且手离地面高度相同,为$1.2m$，即各力作用位置沿鼓均匀分布。
+\item 每位队员所隔距离相同，且手离地面高度相同（假定为$1.2m$），即各力作用位置沿鼓均匀分布。
 \end{enumerate}
 
 \section{符号说明}
@@ -65,56 +65,45 @@
 
 \section{问题分析}
 \subsection{问题1分析}
-题一是一个运动过程分析问题。因为我们考虑绳子为柔性绳，则施加力的方向沿绳方向。在理想情况下，我们可认为每位队员同时施加大小相等的力，即在此题中，$F_{i1}=F_i$,$F_{i2}=F_2$。假设在初始条件下鼓处于平衡位置，记为$s_0$。我们将一次颠球过程分为三个阶段，步骤如下：
+题一是一个运动过程分析问题。因为我们考虑绳子为柔性绳，则施加力的方向沿绳方向。在理想情况下，我们可认为每位队员同时施加大小相等的力，即在此题中，$F_{i1}=F_1$,$F_{i2}=F_2$。假设在初始条件下鼓处于平衡位置，记为$s_0$。我们将一次颠球过程分为三个阶段，步骤如下：
 \begin{enumerate}
 \item 在第一阶段每位队员施加竖直向上的力$F_1$使鼓向上运动，到达$s_1$与排球碰撞，此时鼓上升高度为$x_{00}$,球下降的高度为$x_{10}$。在碰撞前鼓有一个竖直向上的速度$v_{00}$,球有一个竖直向下的速度$v_{10}$。我们考虑两者碰撞过程在瞬间完成，碰撞后鼓速度记为$v_{01}$,球速度记为$v_{11}$,方向均为竖直向上。
 \item 在第二阶段，碰撞后鼓做自由落体运动，运动方向为先上升后下降，到达$s_2$,此时鼓速度为$v_{02}$,与碰撞处的高度差为$x_{01}$，而排球继续上升。
-\item 在第三阶段，队员施加$F_2$的力使鼓做减速运动从$s_2$回到平衡位置，同时排球到达最高处，结束时鼓与排球的速度都为$0$。
+\item 在第三阶段，队员施加$F_2$的力使鼓做减速运动从$s_2$回到平衡位置，同时排球到达最高处，该阶段结束时鼓与排球的速度都为$0$。
 \end{enumerate}
-运动分析图如下所示：
+运动分析图如图(\ref{fig-buoy})所示：
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{img/question1.png}
-\caption{问题一运动过程示意图}\label{fig-buoy}
+\caption{问题一运动过程示意图(未考虑尺寸比例）}\label{fig-buoy}
 \end{figure}
 
 \subsection{问题2分析}
 分析步骤如下：
 \begin{enumerate}
-\item 我们任意选取鼓面上两条半径$AD$,$AH$，长度为$r$，记它们之间夹角为$\gamma$，如图$2$所示。
+\item 我们任意选取鼓面上两条半径$AD$,$AH$，长度为$r$，记它们之间夹角为$\gamma$，如图(\ref{figcircle})所示。
 \begin{figure}[H]
-  \begin{minipage}[t]{0.5\linewidth}   
-    \centering   
-    \includegraphics[width=0.8\textwidth]{img/circle.png}   
-    \caption{}
-  \end{minipage}   
-   \begin{minipage}[t]{0.5\linewidth} 
-      \centering   
-      \includegraphics[width=0.8\textwidth]{img/change.png} 
-      \caption{}      
-    \end{minipage} 
+\centering
+\includegraphics[width=0.5\textwidth]{img/circle.png}
+\caption{鼓面倾斜示意图（1）}\label{figcircle}
 \end{figure}
-假设鼓面沿着与半径$AD$垂直方向的线$AB$倾斜，鼓平面从平面$ABCD$转到了平面$ABC_2D_2$(两平面均看成长方形），旋转角为$\alpha$，如图$3$所示。$AC$为$AH$所在半径的延长线，则$AC$与$CB$之间夹角为$\gamma$。点$E$为点$C$在平面$ABC_2D_2$的投影，即$CE$垂直于$C_2B$，$AE$与$AB$夹角为$\eta$,角$\alpha_1$为$AC$与翻转后平面所夹角。则有：\\
+\quad \quad
+假设鼓面沿着与半径$AD$垂直方向的线$AB$倾斜，鼓平面从平面$ABCD$转到了平面$ABC_2D_2$(两平面均看成长方形），旋转角为$\alpha$，如图(\ref{fig:change})所示。$AC$为$AH$所在半径的延长线，则$AC$与$CB$之间夹角为$\gamma$，$AC_2$与$C_2B$之间夹角为$\gamma$。点$E$为点$C_2$在平面$ABCD$的投影，即$C_2E$垂直于$CB$，$AE$与$AB$夹角为$\eta$,角$\alpha_1$为$AC_2$与原平面所夹角。则有：\\
 \begin{displaymath}
-AC=\frac{AB}{cos\gamma}
+AC_2=\frac{C_2B}{sin\gamma}
 \end{displaymath}
 \begin{displaymath}
-CE=ABsin\alpha
+C_2E=C_2Bsin\alpha
 \end{displaymath}
 \begin{displaymath}
-CE=ACsin\alpha_1
+C_2E=AC_2sin\alpha_1
 \end{displaymath}
 由以上三式可得出$\alpha_1$与$\alpha$、$\gamma$之间关系为：
 \begin{equation}
 sin\alpha_1=sin\alpha cos\gamma
 \end{equation}
 
-\item 当鼓身上绳子的某一固定端与中心的连线倾斜了$\alpha$角时，我们该条绳角度倾斜了$\theta$角，如下图所示。因为$\alpha$与$\theta$很小，所以我们近似可得：
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.5\textwidth]{img/string1.jpg}
-\caption{}
-\end{figure}
+\item 当鼓身上绳子的某一固定端与中心的连线倾斜了$\alpha$角时，我们该条绳角度倾斜了$\theta$角，如下图(\ref{fig:angel})所示。因为$\alpha$与$\theta$很小，所以我们近似可得：
 \begin{displaymath}
 l\theta=r\alpha
 \end{displaymath}
@@ -122,7 +111,22 @@ l\theta=r\alpha
 \begin{equation}
 l\theta_i=r\alpha_i
 \end{equation}
-\item 我们首先考察其中一个固定端。在鼓面为水平时，绳子与竖直方向夹角为$\varphi$,当鼓面倾斜了$\alpha$角时，绳子与竖直方向角度改变$\theta$,则该固定点处绳子与竖直方向夹角变为$(\varphi-\theta)$,绳子所施加力$F_1$在平面$ACE$上点$H$的下方某处,我们可将力分解为竖直方向和沿$AC_2$方向的力。竖直方向力的大小为$F_1sin(\varphi-\theta_1)$,与直线$AB$距离为$rcos\gamma cos\alpha$;沿$AC_2$方向力的大小为$F_1cos(\varphi-\theta_1)$,再将其分解为与$AB$直线和与$AD$直线平行的两个力。$F_{AD}$大小为$F_1cos(\varphi-\theta_1)sin\eta$,与直线$AB$距离为$rsin\alpha_1$;因为$F_{AB}$与$AB$平行，所以在鼓倾斜时对力矩不会产生影响；而关于该固定点关于圆心中心对称处的固定端处绳子与竖直方向夹角变为$(\varphi+\theta)$，设该处力的大小为$F_2$,所能产生影响的两分解力大小分别为$F_2sin(\varphi-\theta_1)$，$F_2cos(\varphi-\theta_1)sin\eta$,与直线$AB$距离分别为$rcos\gamma cos\alpha$，$rsin\alpha_1$。
+\begin{figure}[H]
+  \begin{minipage}[t]{0.5\linewidth}   
+    \centering   
+    \includegraphics[width=0.8\textwidth]{img/change.png}   
+    \caption{鼓面倾斜示意图（二）}   
+    \label{fig:change}   
+  \end{minipage}   
+   \begin{minipage}[t]{0.5\linewidth} % 如果一行放2个图，用0.5，如果3个图，用0.33  
+      \centering   
+      \includegraphics[width=0.8\textwidth]{img/angel.png}   
+      \caption{绳子改变角度示意图}   
+      \label{fig:angel}   
+    \end{minipage} 
+\end{figure}
+
+\item 我们首先考察其中一个固定端。在鼓面为水平时，绳子与竖直方向夹角为$\varphi$,当鼓面倾斜了$\alpha$角时，绳子与竖直方向角度改变$\theta$,则该固定点处绳子与竖直方向夹角变为$(\varphi-\theta)$,绳子所施加力$F_1$在平面$AC_2E$上点$H_2$的下方某处,我们可将力分解为竖直方向和沿$AC$方向的力。竖直方向力的大小为$F_1sin(\varphi-\theta_1)$,与直线$AB$距离为$rcos\gamma cos\alpha$;沿$AC$方向力的大小为$F_1cos(\varphi-\theta_1)$,再将其分解为与$AB$直线和与$AD$直线平行的两个力。$F_{AD}$大小为$F_1cos(\varphi-\theta_1)sin\eta$,与直线$AB$距离为$rsin\alpha_1$;因为$F_{AB}$与$AB$平行，所以在鼓倾斜时对力矩不会产生影响；而关于该固定点关于圆心中心对称处的固定端处绳子与竖直方向夹角变为$(\varphi+\theta)$，设该处力的大小为$F_2$,所能产生影响的两分解力大小分别为$F_2sin(\varphi-\theta_1)$，$F_2cos(\varphi-\theta_1)sin\eta$,与直线$AB$距离分别为$rcos\gamma cos\alpha$，$rsin\alpha_1$。
 \item 建立转动方程，代入数据通过MATLAB求解相关数据。
 \end{enumerate}
 \subsection{问题3分析}
@@ -181,7 +185,7 @@ v_{11}=v_{10}
 \begin{equation}
 m_0v_{00}-m_1v_{11}=m_0v_{01}+m_1v_{11}
 \end{equation}
-碰撞恢复系数为：
+通过查阅相关资料，我们设定碰撞恢复系数大小为$0.74$,所列公式为：
 \begin{equation}
 e=\frac{v_{11}-v_{01}}{v_{00}+v_{11}}
 \end{equation}
@@ -199,7 +203,8 @@ $$F_1=6.25861N$$
 $$F_2=7.14003N$$
 \quad \quad
 算得第一阶段时间为$0.257s$，第二阶段时间为$0.090s$,第三阶段时间为$0.337s$。
-所以最佳策略为当球从最高处下落时，每位队员施加$6.25861N$的力，持续时间为$0.257s$，与排球碰撞，使排球弹起，最高点仍能回到$40cm$,碰撞$0.090s$后，每位队员施加$7.14003N$大小的力，持续$0.337s$，使鼓减速回到$s_0$。
+所以最佳策略为当球从最高处下落时，每位队员施加$6.25861N$的力，持续时间为$0.257s$，与排球碰撞，使排球弹起，最高点仍能回到$40cm$,碰撞$0.090s$后，每位队员施加$7.14003N$大小的力，持续$0.337s$，使鼓减速回到$s_0$。\\
+
 \end{enumerate}
 
 \subsection{问题2的解答}
@@ -211,38 +216,49 @@ J\beta_{1i}= F_{1i}sin(\varphi-\theta_i)rcos\gamma cos\alpha- F_{1i}cos(\varphi-
 \begin{equation}
 J \beta_{2i}= F_{2i}sin(\varphi+\theta_i)rcos\gamma cos\alpha+F_{2i}cos(\varphi+\theta_i)rsin\eta sin\varphi_i
 \end{equation}
-综合所有固定端，得到鼓的转动方程：
+综合所有固定端，得到鼓的转动方程如下：
 \begin{equation}
 J \beta=\sum_{i=1}^4 (J\beta_{i1}-J\beta_{i2})
 \end{equation}
-结合公式$(1)$、$(2)$、$(12)$、$(13)$、$(14)$, 利用MATLAB进行小步长求解，得到结果如下：
+\quad \quad
+结合公式$(1)$、$(2)$、$(12)$、$(13)$、$(14)$, 利用MATLAB进行小步长求解，得到结果如表\ref{table-sym}所示。
+由于初始时，每位队员施加力的力度和时机不同，我们假定在开始时由于施力不均而造成鼓面旋转的方向为正方向。
 \begin{table}[H]
+\centering
+\caption{鼓面倾斜角度结果}\label{table-sym}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
 序号 & 用力参数 & 1    & 2    & 3  & 4    & 5    & 6  & 7  & 8    & 鼓面倾角（度） \\
 \hline
-1  & 发力时机 & 0    & 0    & 0  & 0    & 0    & 0  & 0  & 0    &         \\
-   & 用力大小 & 90   & 80   & 80 & 80   & 80   & 80 & 80 & 80   &         \\
+1  & 发力时机 & 0    & 0    & 0  & 0    & 0    & 0  & 0  & 0    &   $0.198926^{\circ}$ \\
+   & 用力大小 & 90   & 80   & 80 & 80   & 80   & 80 & 80 & 80   &       \\
 \hline
-2  & 发力时机 & 0    & 0    & 0  & 0    & 0    & 0  & 0  & 0    &         \\
+2  & 发力时机 & 0    & 0    & 0  & 0    & 0    & 0  & 0  & 0    &    $0.361033^{\circ}$ \\
    & 用力大小 & 90   & 90   & 80 & 80   & 80   & 80 & 80 & 80   &         \\
 \hline
-3  & 发力时机 & 0    & 0    & 0  & 0    & 0    & 0  & 0  & 0    &         \\
+3  & 发力时机 & 0    & 0    & 0  & 0    & 0    & 0  & 0  & 0    &    $0.154996^{\circ}$ \\
    & 用力大小 & 90   & 80   & 80 & 90   & 80   & 80 & 80 & 80   &         \\
-4  & 发力时机 & -0.1 & 0    & 0  & 0    & 0    & 0  & 0  & 0    &         \\
+\hline
+4  & 发力时机 & -0.1 & 0    & 0  & 0    & 0    & 0  & 0  & 0    &    $-2.33284^{\circ}$ \\
    & 用力大小 & 80   & 80   & 80 & 80   & 80   & 80 & 80 & 80   &         \\
-5  & 发力时机 & -0.1 & -0.1 & 0  & 0    & 0    & 0  & 0  & 0    &         \\
+\hline
+5  & 发力时机 & -0.1 & -0.1 & 0  & 0    & 0    & 0  & 0  & 0    &    $-3.90435^{\circ}$ \\
    & 用力大小 & 80   & 80   & 80 & 80   & 80   & 80 & 80 & 80   &         \\
-6  & 发力时机 & -0.1 & 0    & 0  & -0.1 & 0    & 0  & 0  & 0    &         \\
+\hline
+6  & 发力时机 & -0.1 & 0    & 0  & -0.1 & 0    & 0  & 0  & 0    &    $-1.9634^{\circ}$  \\
    & 用力大小 & 80   & 80   & 80 & 80   & 80   & 80 & 80 & 80   &         \\
-7  & 发力时机 & -0.1 & 0    & 0  & 0    & 0    & 0  & 0  & 0    &         \\
+\hline
+7  & 发力时机 & -0.1 & 0    & 0  & 0    & 0    & 0  & 0  & 0    &    $-2.49741^{\circ}$ \\
    & 用力大小 & 90   & 80   & 80 & 80   & 80   & 80 & 80 & 80   &         \\
-8  & 发力时机 & 0    & -0.1 & 0  & 0    & -0.1 & 0  & 0  & 0    &         \\
+\hline
+8  & 发力时机 & 0    & -0.1 & 0  & 0    & -0.1 & 0  & 0  & 0    &   $ -1.95983^{\circ}$ \\
    & 用力大小 & 90   & 80   & 80 & 90   & 80   & 80 & 80 & 80   &         \\
-9  & 发力时机 & 0    & 0    & 0  & 0    & -0.1 & 0  & 0  & -0.1 &         \\
-   & 用力大小 & 90   & 80   & 80 & 90   & 80   & 80 & 80 & 80   &        
+\hline
+9  & 发力时机 & 0    & 0    & 0  & 0    & -0.1 & 0  & 0  & -0.1 &   $ -2.14966^{\circ}$ \\
+   & 用力大小 & 90   & 80   & 80 & 90   & 80   & 80 & 80 & 80   &        \\
+\hline
 \end{tabular}
 \end{table}
-
 \subsection{问题3解答}
 \subsection{问题4解答}
 \section{模型总结}
@@ -304,5 +320,9 @@ fprintf('施加的力F1为：%.5f\n施加的力F2为：%.5f\n',F1(2), F2(2));
 
 % a2 = (n * F2(2) * cos_phi0 - m0 * g)/m0
 % (v02(2)^2 - v01(2)^2)/(2*g) + v02(2)^2/(2*a2) + v11(2)^2/(2*g)
+\end{lstlisting}
+
+\section{问题二代码}
+\begin{lstlisting}
 \end{lstlisting}
 \end{document}
