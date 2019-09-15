@@ -29,6 +29,7 @@ equ5 = v11^2/g + v00^2/a1 == 0.8;
 equ6 = v11^2/g + (v02^2 - v01^2)/g + v02^2/a2 == 0.8;
 equ = [equ1, equ2, equ3, equ4, equ5, equ6];
 [F1, F2, v00, v01, v02, v11] = solve(equ, [F1, F2, v00, v01, v02, v11]);
+<<<<<<< HEAD:real_exam/B201909002130/chengxu/question1.m
 fprintf('施加的力F1为：%.5f\n施加的力F2为：%.5f\n绳子长度为：%g\n',F1(2), F2(2), l);
 fprintf('v00 = %g\nv01 = %g\nv02 = %g\nv11 = %g\n', v00(2), v01(2), v02(2), v11(2));
 a1 = (n * F1(2) * sin(phi) - m0 * g)/m0;
@@ -37,3 +38,6 @@ t1 = v00(2) / a1;
 t2 = (v01(2) + v02(2)) / g;
 t3 = v02(2) / a2;
 fprintf('上升时间：%g\n下降第一段时间：%g\n下降第二段时间：%g\n', t1, t2, t3);
+=======
+fprintf('施加的力F1为：%.5f\n施加的力F2为：%.5f\n绳子长度为：%g\n',F1(2), F2(2), l);
+>>>>>>> a0de580be09d7484cf80c312b730ff188e2ac040:real_exam/B201909002130/chengxu/question1.m
