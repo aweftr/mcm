@@ -7,7 +7,7 @@
 \begin{abstract}
 本题在于考察分析同心球项目在不同情境下，通过调整团队队员发力的时机及力度，找出团队协作的最佳策略，使排球在鼓面上能持续稳定颠起。\par
 \begin{itemize}
-\item \textbf{针对问题一分析}\quad 首先对于人数的一般值进行分析，确定绳长及人相对同心鼓的最佳站位和分布。我们将一次完整的颠球过程（鼓从初始位置出发到回到初始位置的过程）分为三个阶段，建立竖直平面内的运动模型.以排球和同心鼓的理想运动过程是稳定周期运动为切入点，对于周期内各个阶段的位移、时间关系设列运动关系方程。然后根据对同心鼓建立空间受力分析模型，使用得到的牛顿第二定律方程与前面的运动关系方程联立，得到各物理量值。计算出在最佳策略下，每位队员只需施加的大小为$6.25861N$的力，使鼓与排球碰撞，在碰撞结束$0.090s$后，施加$0.337s$的大小为$7.14003N$的力，使鼓回到原位置，完成一次周期。
+\item \textbf{针对问题一分析}\quad 首先对于人数的一般值进行分析，确定绳长及人相对同心鼓的最佳站位和分布。我们将一次完整的颠球过程（鼓从初始位置出发到回到初始位置的过程）分为三个阶段，建立竖直平面内的运动模型.以排球和同心鼓的理想运动过程是稳定周期运动为切入点，对于周期内各个阶段的位移、时间关系设列运动关系方程。然后根据对同心鼓建立空间受力分析模型，使用得到的牛顿第二定律方程与前面的运动关系方程联立，得到各物理量值。计算出在最佳策略下，每位队员只需施加的大小为$5.83214N$的力，使鼓与排球碰撞，在碰撞结束$0.0903086s$后，施加$0.166724s$的大小为$6.65350N$的力，使鼓回到原位置，完成一次周期。
 \\
 \item \textbf{针对问题二分析}\quad 该问题是一个旋转运动问题。首先需要对鼓和绳子进行几何分析，找出每个固定点的倾斜角度与鼓的倾斜角度，以及固定点的倾斜角度与此处牵拉绳子的旋转角度之间的关系。由于鼓是一个旋转対称体，所以可将八个固定点分成四组，每两个对称固定点为一组，建立力矩与转动惯量模型。分析序号$1$到序号$9$的施力力度及时机，找出每种情况对应的旋转主轴。再利用MATLAB编程，改变不同的参数，求出不同时刻鼓的倾斜角度。\\
 \item \textbf{针对问题三分析}\quad\\
@@ -198,7 +198,7 @@ b=\frac{30}{sin( \frac{180^{\circ}}{n})}
 \end{displaymath}
 又因为绳子与竖直方向夹角为$\varphi$,所以绳子长度可以表示为：
 \begin{equation}
-l=\frac{b-r}{cos\varphi}=\frac{\frac{30}{sin(\frac{180^{\circ}}{n})}-r}{cos\varphi}
+l=\frac{b-r}{sin\varphi}=\frac{\frac{30}{sin(\frac{180^{\circ}}{n})}-r}{sin\varphi}
 \end{equation}
 \item \textbf{运动计算}\\
 在最佳协作策略下，每位队员都想要使自己施加的力尽可能小，持续时间尽可能短。这样我们可以假设排球所能到达的最高高度恰好为$40cm$。
@@ -236,15 +236,16 @@ sin\varphi=\frac{1.09}{l}
 \end{equation}
 \item \textbf{计算求解}\\
 结合方程$(3)$到方程$(11)$，利用MATLAB求解，得到结果：
+$$l=1.16661m$$
 $$v_{00}=0.593537m/s$$
 $$v_{01}=0.2157m/s$$
 $$v_{02}=0.669324m/s$$
 $$v_{11}=v_{10}=2.51891m/s$$
-$$F_1=6.25861N$$ 
-$$F_2=7.14003N$$
+$$F_1=5.83214N$$ 
+$$F_2=6.65350N$$
 \quad \quad
-算得第一阶段时间为$0.257s$，第二阶段时间为$0.090s$,第三阶段时间为$0.337s$。
-所以最佳策略为当球从最高处下落时，每位队员施加$6.25861N$的力，持续时间为$0.257s$，与排球碰撞，使排球弹起，最高点仍能回到$40cm$,碰撞$0.090s$后，每位队员施加$7.14003N$大小的力，持续$0.337s$，使鼓减速回到$s_0$。
+算得第一阶段时间为$0.257032s$，第二阶段时间为$0.0903086s$,第三阶段时间为$0.166724s$。
+所以最佳策略为当球从最高处下落时，每位队员施加$5.83214N$的力，持续时间为$0.257032s$，与排球碰撞，使排球弹起，最高点仍能回到$40cm$,碰撞$0.0903086s$后，每位队员施加$6.65350N$大小的力，持续$0.166724s$，使鼓减速回到$s_0$。
 
 \end{enumerate}
 
@@ -332,7 +333,7 @@ a=\frac{Fsin\varphi-mg}{m}=2.422m/s^2
 \end{equation}
 综合式子$(15)$到$(17)$,可计算得到$t_1$为$0.1804s$,$t_2$为$0.5193s$。
 \item \textbf{排球受力分析}\\
-现在，我们对鼓的旋转主轴进行分析。现有十位队员参与比赛，我们分别标记为$1,2,3,\dots,10$,那么每两位队员所拉绳子的固定端与圆心的夹角为$36^{\circ}$。根据题意，排球倾斜方向在水平面的投影指向某两位队员之间，且与这两位队员的夹角之比为$1:2$。我们假设排球倾斜方向的投影落在队员$1$与队员$2$之间，与队员$1$的夹角为$12^{\circ}$,与队员$2$的夹角为$24^{\circ}$。图(\ref{fig:ball})为鼓面俯视图，$oc$为排球倾斜方向投影，那么鼓的旋转主轴方向应与$oc$垂直，可找出过圆心的直线$ab$为旋转主轴方向。而由于离旋转主轴越远，对旋转的影响越大，所以我们增加队员$1$,$6$施加的力，减少其余队员的施加力，逐步分析直至第二次碰转角度为$0.5^{\circ}$。
+现在，我们对鼓的旋转主轴进行分析。现有十位队员参与比赛，我们分别标记为$1,2,3,\dots,10$,那么每两位队员所拉绳子的固定端与圆心的夹角为$36^{\circ}$。根据题意，排球倾斜方向在水平面的投影指向某两位队员之间，且与这两位队员的夹角之比为$1:2$。我们假设排球倾斜方向的投影落在队员$1$与队员$2$之间，与队员$1$的夹角为$24^{\circ}$,与队员$2$的夹角为$12^{\circ}$。图(\ref{fig:ball})为鼓面俯视图，$oc$为排球倾斜方向投影，那么鼓的旋转主轴方向应与$oc$垂直，可找出过圆心的直线$ab$为旋转主轴方向。而由于离旋转主轴越远，对旋转的影响越大，所以我们增加队员$2$,$7$施加的力，减少其余队员的施加力，逐步分析直至第二次碰转角度为$0.5^{\circ}$。
 %\begin{figure}[H]
 %\centering
 %\includegraphics[width=0.8\textwidth]{img/ball.pdf}
@@ -365,29 +366,24 @@ clc
 clear
 syms n h step F1 F2 v00 v11 v01 v02 h11 n
 % e 为鼓与球碰撞的恢复系数。
-e = 0.74; m0 = 3.6; m1 = 0.27; g = 9.8; 
+e = 0.74; m0 = 3.6; m1 = 0.27; g = 9.8; d = 0.4; r = d / 2;
 % h_min 为球颠起后需要距离鼓的最小距离40cm。
 h_min = 0.4;
-% step 为计算鼓上升时间的每次步长，单位为秒。
-step = 0.001;
-% l = input('Please input the length of the rope');
 n = input('Please input the number of students:');
 h = input('Please input the height of the hand:');
-% n = 8; 
-% h = 1.2;
 % h0 为鼓距离地面的距离。
 h0 = 0.11;
 % alpha 人与人之间的角度。
 alpha = 360/n;
 % 绳长
-lx = sqrt(0.6^2 / (2 * (1 - cos(alpha))));
+lx = sqrt(0.6^2 / (2 * (1 - cos(alpha)))) - r;
 ly = h - h0;
 l = sqrt(lx^2 + ly^2);
 
-cos_phi0 = ly / l;
-
-a1 = (n * F1 * cos_phi0 - m0 * g)/m0;
-a2 = (n * F2 * cos_phi0 - m0 * g)/m0;
+phi = asin(ly / l);
+% a1 为鼓上升时候的加速度， a2 为鼓下降第二段的加速度
+a1 = (n * F1 * sin(phi) - m0 * g)/m0;
+a2 = (n * F2 * sin(phi) - m0 * g)/m0;
 
 equ1 = m0 * v00 - m1 * v11 == m0 * v01 + m1 * v11;
 equ2 = (v11 - v01) / (v00 + v11) == e;
@@ -397,13 +393,378 @@ equ5 = v11^2/g + v00^2/a1 == 0.8;
 equ6 = v11^2/g + (v02^2 - v01^2)/g + v02^2/a2 == 0.8;
 equ = [equ1, equ2, equ3, equ4, equ5, equ6];
 [F1, F2, v00, v01, v02, v11] = solve(equ, [F1, F2, v00, v01, v02, v11]);
-fprintf('施加的力F1为：%.5f\n施加的力F2为：%.5f\n',F1(2), F2(2));
+fprintf('施加的力F1为：%.5f\n施加的力F2为：%.5f\n绳子长度为：%g\n',F1(2), F2(2), l);
+fprintf('v00 = %g\nv01 = %g\nv02 = %g\nv11 = %g\n', v00(2), v01(2), v02(2), v11(2));
+a1 = (n * F1(2) * sin(phi) - m0 * g)/m0;
+a2 = (n * F2(2) * sin(phi) - m0 * g)/m0;
+t1 = v00(2) / a1;
+t2 = (v01(2) + v02(2)) / g;
+t3 = v02(2) / a2;
+fprintf('上升时间：%g\n下降第一段时间：%g\n下降第二段时间：%g\n', t1, t2, t3);
 
-% a2 = (n * F2(2) * cos_phi0 - m0 * g)/m0
-% (v02(2)^2 - v01(2)^2)/(2*g) + v02(2)^2/(2*a2) + v11(2)^2/(2*g)
 \end{lstlisting}
 
 \section{问题二代码}
+\subsection{子问题一}
 \begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = 0; gamma2 = pi / 4;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+    % 转动方程求此时的角加速度。
+    beta = (r * (F1 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
+        F2 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
+
+\subsection{子问题二}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = pi / 8; gamma2 = 3 * pi / 8;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (2 * r * (F1 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
+        F2 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+\subsection{子问题三}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma2 = pi / 8; gamma1 = 3 * pi / 8;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (2 * r * (F1 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
+        F2 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+\subsection{子问题四}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = 0; gamma2 = pi / 4;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    theta1 = alpha1 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = r * F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('0.1s前的鼓面倾角：%g°\n', rad2deg(alpha));
+for i=1:step
+%     if mod(i,10) == 0
+%         fprintf('%d\n', i/10);
+%     end
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (F2 * r * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1) - ...
+        sin(phi + theta1) * cos(alpha) * cos(gamma1) - cos(phi + theta1) * sin(alpha1) * sin(Eta1)) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+\subsection{子问题五}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = pi / 8; gamma2 = 3 * pi / 8;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    theta1 = alpha1 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = 2 * r * F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('0.1s前的鼓面倾角：%g°\n', rad2deg(alpha));
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (2 * F2 * r * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1) - ...
+        sin(phi + theta1) * cos(alpha) * cos(gamma1) - cos(phi + theta1) * sin(alpha1) * sin(Eta1)) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+\subsection{子问题六}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma2 = pi / 8; gamma1 = 3 * pi / 8;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    theta1 = alpha1 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = 2 * r * F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('0.1s前的鼓面倾角：%g°\n', rad2deg(alpha));
+
+for i=1:step
+%     if mod(i,10) == 0
+%         fprintf('%d\n', i/10);
+%     end
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (2 * F2 * r * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1) - ...
+        sin(phi + theta1) * cos(alpha) * cos(gamma1) - cos(phi + theta1) * sin(alpha1) * sin(Eta1)) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+\subsection{子问题七}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = 0; gamma2 = pi / 4;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    theta1 = alpha1 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = r * F1 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('0.1s前的鼓面倾角：%g°\n', rad2deg(alpha));
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (r * (F1 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
+        F2 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+
+\subsection{子问题八}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = 3 * pi / 8; gamma2 = pi / 8;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    theta1 = alpha1 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = 2 * r * F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('0.1s前的鼓面倾角：%g°\n', rad2deg(alpha));
+
+for i=1:step
+%     if mod(i,10) == 0
+%         fprintf('%d\n', i/10);
+%     end
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (r * (F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
+        F1 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        F2 * r * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1) - ...
+        sin(phi + theta1) * cos(alpha) * cos(gamma1) - cos(phi + theta1) * sin(alpha1) * sin(Eta1)) + ...
+        r * (F1 * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2)) - ...
+        F2 * (sin(phi + theta2) * cos(alpha) * cos(gamma2) + cos(phi + theta2) * sin(alpha2) * sin(Eta2))) + ...
+        F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
+
+\subsection{子问题九}
+\begin{lstlisting}
+clc
+clear
+d = 0.4; r = d/2; m = 3.6; h = 0.22;
+F1 = 90; F2 = 80;
+l = 1.7;
+phi = asin(0.11/1.7); alpha = 0; omega = 0;
+gamma1 = 3 * pi / 8; gamma2 = pi / 8;
+J = 1/2 * m * r^2 + 1/12 * m * h^2; %圆环的转动惯量。
+step = 1000000;
+t = 0.1 / step; % 0.1 秒的步长。
+
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    theta1 = alpha1 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = 2 * r * F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('0.1s前的鼓面倾角：%g°\n', rad2deg(alpha));
+
+for i=1:step
+%     if mod(i,10) == 0
+%         fprintf('%d\n', i/10);
+%     end
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+     % 转动方程求此时的角加速度。
+    beta = (2 * r * (F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
+        F1 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+end
+fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
+\end{lstlisting}
+
 \end{document}
