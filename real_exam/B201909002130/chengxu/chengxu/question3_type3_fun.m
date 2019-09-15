@@ -9,7 +9,7 @@ t = 1 / step;
 alphadata = [];
 
 % 有策略情况
-% -0.1 - 0 s
+% -0.1 - 0 s 先发力 90 N
 step = 0.1 / t;
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
@@ -22,7 +22,7 @@ for i=1:step
         alphadata = [alphadata, rad2deg(alpha)];
     end
 end
-% 0 - 0.1 s
+% 0 - 0.1 s 继续 90 N发力
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
     alpha2 = asin(sin(alpha) * cos(gamma2));
@@ -40,8 +40,7 @@ for i=1:step
         alphadata = [alphadata, rad2deg(alpha)];
     end
 end
-% 0.1 - 0.3 s
-step = 0.2 / t;
+% 0.1 - 0.2 s 意识到发力过大，自己以 70 N 发力，对方以 F3 发力
 F1 = 70;
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
@@ -60,9 +59,7 @@ for i=1:step
         alphadata = [alphadata, rad2deg(alpha)];
     end
 end
-% 0.3 - 1 s
-step = 0.7 / t;
-F1 = 80;
+% 0.2 - 0.3 s 对方发力回归正常 80 N，自己仍然是 70 N
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
     alpha2 = asin(sin(alpha) * cos(gamma2));
@@ -72,6 +69,25 @@ for i=1:step
     theta2 = alpha2 * r / l;
     beta = (r * (F1 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) - ...
         F2 * (sin(phi + theta1) * cos(alpha) * cos(gamma1) + cos(phi + theta1) * sin(alpha1) * sin(Eta1))) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
+    alpha = alpha + omega * t + 1/2 * beta * t^2;
+    omega = omega + beta * t;
+    if mod(i,100) == 0
+        alphadata = [alphadata, rad2deg(alpha)];
+    end
+end
+% 0.3 - 1 s 自己发力恢复正常
+step = 0.7 / t;
+for i=1:step
+    alpha1 = asin(sin(alpha) * cos(gamma1));
+    alpha2 = asin(sin(alpha) * cos(gamma2));
+    Eta1 = acos(sin(gamma1) / cos(alpha1));
+    Eta2 = acos(sin(gamma2) / cos(alpha2));
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+    beta = (F2 * r * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1) - ...
+        sin(phi + theta1) * cos(alpha) * cos(gamma1) - cos(phi + theta1) * sin(alpha1) * sin(Eta1)) + ...
         2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
         sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
     alpha = alpha + omega * t + 1/2 * beta * t^2;
