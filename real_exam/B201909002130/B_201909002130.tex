@@ -13,7 +13,7 @@
 \item \textbf{针对问题三分析}\quad 该问题是基于问题二对于问题一的理想状态进行调整，首先将问题二中产生的误差类型分为三类：1.发力时间提前 2.发力大小误差 3.发力时间提前和大小误差同时出现。对于前两者，我们根据对称性关系相应提出了补偿性不发力或对称力增大，以及补偿性力减小的调整策略，对于第三种情况则采取两种调整方式综合使用的方法。最后我们讨论了现实情况下，人的用力大小和时机相对于理想值有一个正态分布的扰动，得到同心鼓鼓面0.5°的倾斜角是不可避免的结论。\\
 \item \textbf{针对问题四分析}\quad 根据碰撞的对称性，我们需要在将鼓面从-0.5°倾斜至0.5°，根据到再次碰撞时的排球运动时间与鼓面完成自由落体和加速度向上的运动时间相同，联立鼓面竖直方向的运动方程，可以得到两个运动阶段分别的时间。在加速度向上的过程中，最高效的力量作用方式是增大与转轴角度最大的一对力，来控制鼓面的倾斜角度。最后运用计算机对力度的大小进行小步长的搜索，对每一个力度模拟鼓面的倾斜角度变化，来得到可行解。\\
 \end{itemize}
-\textbf{关键词} \quad 运动方程 \quad  MATLAB\quad 同心鼓 \quad 
+\textbf{关键词} \quad 运动方程 \quad  MATLAB\quad 同心鼓 \quad
 \end{abstract}
 
 \newpage
@@ -51,7 +51,7 @@
   \hline
   符号 & 符号描述 & 符号 & 符号描述\\
   \hline
-  $m_0$ & 鼓的质量 &  $m_1$ & 排球质量 \\ 
+  $m_0$ & 鼓的质量 &  $m_1$ & 排球质量 \\
   $l$ & 绳子长度 &  $h$ & 双面鼓底面距离地面高度\\
   $r$ & 鼓面半径 & $F_{i}$ & 第$i$位队员施加力的大小\\
   $\varphi$ & 绳子与水平方向夹角 & $x_{10}$ & 球从最高处落下到碰撞时的高度差\\
@@ -88,18 +88,18 @@
 \begin{enumerate}
 \item 任意选取鼓面上两条半径$AD$,$AH$，长度为$r$，记它们之间夹角为$\gamma$，如图(\ref{figcircle})所示。
 \begin{figure}[H]
-  \begin{minipage}[t]{0.5\linewidth}   
-    \centering   
-    \includegraphics[width=0.8\textwidth]{img/circle.png}   
-    \caption{鼓面倾斜示意图（一）}   
-    \label{figcircle}   
-  \end{minipage}   
-   \begin{minipage}[t]{0.5\linewidth}   
-      \centering   
-      \includegraphics[width=0.8\textwidth]{img/change.png}   
-      \caption{鼓面倾斜示意图（二）}   
-      \label{fig:change}   
-    \end{minipage} 
+  \begin{minipage}[t]{0.5\linewidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/circle.png}
+    \caption{鼓面倾斜示意图（一）}
+    \label{figcircle}
+  \end{minipage}
+   \begin{minipage}[t]{0.5\linewidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{img/change.png}
+      \caption{鼓面倾斜示意图（二）}
+      \label{fig:change}
+    \end{minipage}
 \end{figure}
 
 \quad \quad
@@ -258,7 +258,7 @@ $$v_{00}=0.593537m/s$$
 $$v_{01}=0.2157m/s$$
 $$v_{02}=0.669324m/s$$
 $$v_{11}=v_{10}=2.51891m/s$$
-$$F_1=5.83214N$$ 
+$$F_1=5.83214N$$
 $$F_2=6.65350N$$
 \quad \quad
 算得第一阶段时间为$0.257032s$，第二阶段时间为$0.0903086s$,第三阶段时间为$0.166724s$。
@@ -444,7 +444,7 @@ a=\frac{Fsin\varphi-mg}{m}
 \appendix
 \textbf{附录}
 \section{问题一求解代码}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 syms n h step F1 F2 v00 v11 v01 v02 h11 n
@@ -489,7 +489,7 @@ fprintf('上升时间：%g\n下降第一段时间：%g\n下降第二段时间：
 
 \section{问题二代码}
 \subsection{子问题一}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -520,7 +520,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
 
 \subsection{子问题二}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -551,7 +551,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
 
 \subsection{子问题三}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -582,7 +582,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
 
 \subsection{子问题四}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -626,7 +626,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
 
 \subsection{子问题五}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -668,7 +668,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
 
 \subsection{子问题六}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -713,7 +713,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \end{lstlisting}
 
 \subsection{子问题七}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -756,7 +756,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 
 
 \subsection{子问题八}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -806,7 +806,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 
 
 \subsection{子问题九}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -853,7 +853,7 @@ fprintf('鼓面倾角：%g°\n', rad2deg(alpha));
 \section{问题三求解代码}
 
 \subsection{类型一策略一}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -981,7 +981,7 @@ legend('策略','无策略');
 \end{lstlisting}
 
 \subsection{类型一策略二}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22; l = 1.7;
@@ -1040,7 +1040,7 @@ legend('策略160', '策略240', '策略320', '策略400', '无策略');
 \end{lstlisting}
 
 \subsection{类型一策略二辅助代码}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 function [alphadata] = question3_type1method2_fun(F1)
 % 计算不同的 F1 对之后的转动角度造成的影响。
 d = 0.4; r = d/2; m = 3.6; h = 0.22; F2 = 80;
@@ -1127,9 +1127,9 @@ for i=1:step
         alphadata = [alphadata, rad2deg(alpha)];
     end
 end
-\end{lstliating}
+\end{lstlisting}
 \subsection{类型二策略}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 % 针对类型二,队员同时发力，但是有队员未掌控力度。
 clc
 clear
@@ -1208,7 +1208,7 @@ for i=1:step
 end
 x = (t * 100): (t * 100): 1;
 plot(x, alphadata);
-hold on 
+hold on
 % 无策略
 alpha = 0; omega = 0;
 F1 = 90;
@@ -1239,7 +1239,7 @@ legend('策略','无策略');
 \end{lstlisting}
 
 \subsection{类型三策略}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22;
@@ -1287,7 +1287,7 @@ for i=1:step
     end
 end
 x = -0.1 + (t * 100): (t * 100): 1;
-hold on 
+hold on
 plot(x, alphadata);
 
 for F3 = 160: 80: 400
@@ -1300,7 +1300,7 @@ legend('无策略', '策略160', '策略240', '策略320', '策略400');
 \end{lstlisting}
 
 \subsection{类型三策略辅助代码}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 function [alphadata] = question3_type3_fun(F3)
 d = 0.4; r = d/2; m = 3.6; h = 0.22; F1 = 90; F2 = 80;
 l = 1.7;
@@ -1402,7 +1402,7 @@ end
 \end{lstlisting}
 
 \section{问题四解答代码}
-\begin{lstlisting}
+\begin{lstlisting}[language=matlab]
 clc
 clear
 d = 0.4; r = d/2; m = 3.6; h = 0.22; g = 9.8; L = 2;
