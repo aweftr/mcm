@@ -12,7 +12,7 @@ h0 = 0.11;
 % alpha 人与人之间的角度。
 alpha = 360/n;
 % 绳长
-lx = sqrt(0.6^2 / (2 * (1 - cos(alpha)))) - r;
+lx = sqrt(0.6^2 / (2 * (1 - cos(deg2rad(alpha))))) - r;
 ly = h - h0;
 l = sqrt(lx^2 + ly^2);
 
