@@ -22,8 +22,8 @@ step = 0.1 / t;
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
     Eta1 = acos(sin(gamma1) / cos(alpha1));
-    beta1 = alpha1 * r / l;
-    beta = r * F2 * (sin(phi - beta1) * cos(alpha) * cos(gamma1) - cos(phi - beta1) * sin(alpha1) * sin(Eta1)) / J;
+    theta1 = alpha1 * r / l;
+    beta = r * F2 * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1)) / J;
     alpha = alpha + omega * t + 1/2 * beta * t^2;
     omega = omega + beta * t;
     if mod(i,100) == 0
@@ -37,12 +37,12 @@ for i=1:step
     alpha2 = asin(sin(alpha) * cos(gamma2));
     Eta1 = acos(sin(gamma1) / cos(alpha1));
     Eta2 = acos(sin(gamma2) / cos(alpha2));
-    beta1 = alpha1 * r / l;
-    beta2 = alpha2 * r / l;
-    beta = (F2 * r * (sin(phi - beta1) * cos(alpha) * cos(gamma1) - cos(phi - beta1) * sin(alpha1) * sin(Eta1) - ...
-        sin(phi + beta1) * cos(alpha) * cos(gamma1) - cos(phi + beta1) * sin(alpha1) * sin(Eta1)) + ...
-        2 * F2 * r * (sin(phi - beta2) * cos(alpha) * cos(gamma2) - cos(phi - beta2) * sin(alpha2) * sin(Eta2) - ...
-        sin(phi + beta2) * cos(alpha) * cos(gamma2) - cos(phi + beta2) * sin(alpha2) * sin(Eta2))) / J;
+    theta1 = alpha1 * r / l;
+    theta2 = alpha2 * r / l;
+    beta = (F2 * r * (sin(phi - theta1) * cos(alpha) * cos(gamma1) - cos(phi - theta1) * sin(alpha1) * sin(Eta1) - ...
+        sin(phi + theta1) * cos(alpha) * cos(gamma1) - cos(phi + theta1) * sin(alpha1) * sin(Eta1)) + ...
+        2 * F2 * r * (sin(phi - theta2) * cos(alpha) * cos(gamma2) - cos(phi - theta2) * sin(alpha2) * sin(Eta2) - ...
+        sin(phi + theta2) * cos(alpha) * cos(gamma2) - cos(phi + theta2) * sin(alpha2) * sin(Eta2))) / J;
     alpha = alpha + omega * t + 1/2 * beta * t^2;
     omega = omega + beta * t;
     if mod(i,100) == 0
