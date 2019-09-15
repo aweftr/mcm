@@ -11,6 +11,8 @@ step = 1000000;
 t = 1 / step;
 alphadata = []; % 0.1 秒的步长。
 
+% 有策略情况
+% 0 - 0.2s
 step = 0.2 / t;
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
@@ -31,7 +33,7 @@ for i=1:step
         alphadata = [alphadata, rad2deg(alpha)];
     end
 end
-
+% 0.2 - 0.4s
 F1 = 70;
 for i=1:step
     alpha1 = asin(sin(alpha) * cos(gamma1));
@@ -51,7 +53,7 @@ for i=1:step
         alphadata = [alphadata, rad2deg(alpha)];
     end
 end
-
+% 0.4 - 1s
 step = 0.6 / t;
 F1 = 80;
 for i=1:step
@@ -75,7 +77,7 @@ end
 x = (t * 100): (t * 100): 1;
 plot(x, alphadata);
 hold on 
-
+% 无策略
 alpha = 0; omega = 0;
 F1 = 90;
 alphadata = [];
